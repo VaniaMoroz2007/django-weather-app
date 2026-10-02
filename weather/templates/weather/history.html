@@ -1,0 +1,30 @@
+{% extends 'weather/base.html' %}
+
+{% block content %}
+    <h2>Історія ваших пошуків погоди</h2>
+
+    {% if history %}
+        <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th>Місто</th>
+                    <th>Температура</th>
+                    <th>Опис погоди</th>
+                    <th>Дата та час пошуку</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in history %}
+                    <tr>
+                        <td>{{ item.city }}</td>
+                        <td>{{ item.temperature }}°C</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.search_date|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Ви ще не шукали погоду.</p>
+    {% endif %}
+{% endblock %}

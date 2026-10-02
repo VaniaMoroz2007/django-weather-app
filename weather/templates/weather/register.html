@@ -1,0 +1,13 @@
+{% extends 'weather/base.html' %}
+
+{% block content %}
+    <h2>Реєстрація нового користувача</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зареєструватися</button>
+    </form>
+    
+    <p>Вже є обліковий запис? <a href="{% url 'login' %}">Увійти</a></p>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'weather/base.html' %}
+
+{% block content %}
+    <h2>Головна сторінка</h2>
+    <p>Вітаємо, {{ user.username }}!</p>
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="city" placeholder="Введіть назву міста: " required>
+        <button type="submit">Отримати погоду</button>
+    </form>
+
+    <br>
+
+    {% if weather %}
+        <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px; width: 300px;">
+            <h3>Погода у місті {{ weather.city }}:</h3>
+            <p><strong>Температура:</strong> {{ weather.temperature }}°C</p>
+            <p><strong>Вологість:</strong> {{ weather.humidity }}%</p>
+            <p><strong>Опис:</strong> {{ weather.description }}</p>
+        </div>
+    {% endif %}
+
+{% endblock %}
